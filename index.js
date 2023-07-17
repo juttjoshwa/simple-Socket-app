@@ -8,10 +8,12 @@ const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const socketIO = require("socket.io");
+const Dot = require("dotenv");
 
 // Create an Express app and enable CORS
 const app = express();
 app.use(cors());
+Dot.config()
 app.get("/", (req, res) => {
   res.send("HELL ITS WORKING");
 });
@@ -60,11 +62,11 @@ io.on("connection", (socket) => {
 });
 
 // Define the server port
-const PORT = 2235;
+// const PORT = 2235;
 
 // Start the server and listen on the specified port
-server.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+server.listen(process.env.PORT, () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
 
 // Set up a simple route for the root URL
